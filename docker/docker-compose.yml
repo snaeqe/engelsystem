@@ -11,6 +11,7 @@ services:
       MYSQL_USER: engelsystem
       MYSQL_PASSWORD: engelsystem
       MYSQL_DATABASE: engelsystem
+      ENABLE_USER_NAME: 1
     ports:
       - "5080:80"
     env_file: deployment.env
@@ -20,7 +21,7 @@ services:
     depends_on:
       - es_database
   es_database:
-    image: mariadb:10.2
+    image: mariadb
     environment:
       MYSQL_DATABASE: engelsystem
       MYSQL_USER: engelsystem
@@ -31,6 +32,16 @@ services:
       - db:/var/lib/mysql
     networks:
       - database
+  db_admin:
+    image: phpmyadmin
+    environment:
+      PMA_HOST: es_database
+    networks:
+      - database
+      - internet
+    ports:
+      - "8080:80"
+
 volumes:
   db: {}
 

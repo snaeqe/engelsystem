@@ -40,12 +40,17 @@
                     {{ f.input('first_name', __('settings.profile.firstname'), {
                         'value': user.personalData.first_name,
                         'max_length': 64,
+                        'required': true,
+                        'required_icon': true,
+
                     }) }}
                 </div>
                 <div class="col-sm-6">
                     {{ f.input('last_name', __('settings.profile.lastname'), {
                         'value': user.personalData.last_name,
                         'max_length': 64,
+                        'required': true,
+                        'required_icon': true,
                     }) }}
                 </div>
             </div>
